@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Sarah Sandager Jensen">
+    <meta name="keywords" content="fjordens lægehus, lægehus, læge, åbningstider, kontakt, telefonnummer, lægevagt, akuttelefon">
+    <meta name="description" content="Vi er et moderne lægehus, med dygtige læger, der aktivt holder sig opdaterede indenfor den nyeste lægevidenskab og forskning. Find kontaktinformation her.">
+    <title>Fjordens Lægehus - Dit lægehus for hele familien</title>
+    <!-- Nedenstående sørger for at vi ikke bliver indekseret på google -->
+    <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+    <link rel="stylesheet" href="stylesheet.css">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"><!--Google Material Design icons - for kryds i popup-->
+    <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+
+</head>
+<body>
+
+  
+
+
+    <div class="menucontainer">
+    <nav class="navbar">
+      <a href="/index.html"><img src="/images/logo.svg" alt="logo for fjordens lægehus" class="logo"></a>
+      <ul class="navmenu"> 
+      
+         <li id="nav1" class="dropdown">
+           <div class="column1"> <a class="dropbtn" href="#">Om Lægehuset</a></div>
+           <div class="dropmargin"><ul class="dropdown-content">
+              <li><a href="/personale.html">Personale</a></li>
+              <li><a href="/findvej.html">Find Vej</a></li>
+              <li><a href="#">Samarbejdspartnere</a></li>
+              <li><a href="#">Nyheder</a></li>
+              <li><a href="#">Kontakt</a></li>
+            </ul></div>
+            </li>
+
+        <li  id="nav2" class="dropdown">
+          <div class="column1"><a class="dropbtn" href="/patienthåndbog.html">Diverse Symptomer</a></div>
+          <div class="dropmargin"><ul class="dropdown-content">
+              <li><a href="#">Vejledninger til Forældre</a></li>
+              <li><a href="#">Vejledninger til Gravide</a></li>
+              <li><a href="/patienthåndbog.html">Læs om alle symptomer</a></li>
+            </ul></div>
+          </li>
+        
+        <li id="nav3" class="dropdown">
+          <div class="column2"><a class="dropbtn" href="#">Vaccinationer</a></div>
+          <div class="dropmargin"><ul class="dropdown-content">
+            <li><a href="#">Børnevaccinationer</a></li>
+            <li><a href="#">Sæsonvaccinationer</a></li>
+          <li><a href="#">Rejsevaccinationer</a></li>
+          </ul></div>
+        </li>
+
+      <li class="dropdown" id="selvbetjening"> <!--List item 1 -->
+          <div class="column2"><a class="dropbtn" href="#">Selvbetjening</a></div>
+          <div class="dropmargin"><ul class="dropdown-content">
+            <li><a href="#">Receptfornyelse</a></li>
+            <li><a href="#">Tidsbestilling</a></li>
+          <li><a href="#">E-mail konsultation</a></li>
+          </ul></div>
+    </li>   
+        </ul>
+        <!-- her begynder jeg på en hamburger menu jeg har lært fra https://www.youtube.com/watch?v=flItyHiDm7E -->
+        <div class="hamburger"> 
+          <button type="button" aria-label="menu-knap" class="hamburgerbtn" >
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span></button>
+        </div>
+    </nav>  
+  </div>
+  <script>
+   /*herunder laver jeg to const (constant) variabler - en for hamburger og en for navMenu. På den måde ved jeg at jeg ikke senere kan komme til at overskrive
+   deres værdier ved et uheld. Jeg bruger query selectoren til at vælge de to classes.*/
+    const hamburger = document.querySelector(".hamburger");
+const navMenu = document.querySelector(".navmenu");
+
+/*her laver jeg et event når man klikker på hamburger menuen og beder den om at 'toggle'(gøre 'aktiv') en class kaldet 'active' ved både navMenu og hamburger.
+Det gør så at når du klikker på hamburgeren ændrer hamburger og navMenu tingene sig alt efter hvad jeg har skrevet i css. Jeg skriver hamburger.active og 
+navmenu.active for at aktivere dem i css nede i media queries.*/
+hamburger.addEventListener("click", () => {
+    hamburger.classList.toggle("active");
+    navMenu.classList.toggle("active");
+ })
+
+ /*Hernede gør jeg så når du så trykker på noget som helst i en .dropdown class fjerner den igen 'active' classen, så det returner til 'normal', altså med
+ hamburger menuen oppe i hjørnet og uden vist dropdown.*/
+
+ document.querySelectorAll(".dropdown").forEach(n => n. addEventListener("click", () => {
+    hamburger.classList.remove("active")
+    navMenu.classList.remove("active")
+ }))
+
+  </script>
+
+<!--112 banner-->
+<div class="banner">
+  <div class="banner-content">
+    <p>Ved livstruende situationer, ring til 112</p>
+    <button class="banner-close" aria-label="luk banner" type="button"><span class="material-symbols-outlined">
+      close
+      </span></button>
+  </div>
+</div>
+ <!--Herunder er javascript til at lukke når man trykker på kryds. Har lært metoden af dcode på youtube https://www.youtube.com/watch?v=x-LVUk2IxDU  
+query selctoren vælger den button jeg har kaldt banner-close, så javascript ved at det er den det drejser sig om. så har jeg lavet en addEventListener, som gør
+at jeg kan lave et 'event', altså noget der skal ske. Det har gjort til et click-event, dvs når du klikker på banner-close. S¨skal den finde den samt den tætteste
+der matcher '.banner' (vha. closest), og på den skriver jeg at dens display skal være lig med none.-->
+<script>
+  document.querySelector(".banner-close") .addEventListener("click", function() {
+      this.closest(".banner").style.display="none";
+  } );
+  </script>
+    
+
+    <!-- header -->
+    <img src="/images/reception.jpg" alt="foto af Cedric Fauntleroy -> Billede viser en reception ved et lægehus hvor to kollegaer snakker over skranken" class="headerimg">
+    <section class="header">
+            <div class="headerindhold"><h1>Velkommen til Fjordens Lægehus</h1>
+              <div class="selvbetjening"><a href="#">Log på Selvbetjening</a></div></div>
+    </section>
+<section>
+
+<!-- Tre øverste kasser -->
+<div class="lægetelefon">
+  <h2>Telefon</h2>
+    <p>Ring til lægesekretæren i hverdagene mellem
+      <span style="font-weight:500">8:00-10:00</span> og igen <span style="font-weight:500">10:30-12:00</span>
+    <br><br>
+    Tlf 00 11 22 33 </p>
+</div>
+
+<div class="akuttelefon">
+  <h2>Akut-Telefon</h2>
+  <p>Ring ved akut opstået sygdom i hverdagene fra 
+  <span style="font-weight:500">12:00-16:00</span>
+  <br><br>
+  Tlf 11 22 33 44 </p>
+</div>
+
+<section>
+  <div class="konsultationstid">
+    <h2>Åbningstid</h2>
+    <p>Mandag-Torsdag <br> 8:00-16:00 <br> Fredag <br> 8:00-12:00</p>
+    <a href="https://laegevejen.dk/Login">Bestil tid til konsultation online her</a>
+  </div>
+  </section>
+    
+<!-- 2 næste kasser -->
+<div class="lægehus">
+  <h2>Lægehus med 3 praktiserende læger</h2>
+  <p>Lis Visholm Sørensen <br>
+    Mateo Rodrigues<br>
+    Anne-Sofie Kristensen</p>
+  <a href="/personale.html">Læs mere om vores personale her</a>
+</div>
+</section>
+
+<div class="lægevagt">
+  <h2>Lægevagt</h2>
+  <p>Fra <span style="font-weight:500">16:00-8:00</span> hverdage samt hele døgnet weekend og helligdage.
+  <br><br>
+  Tlf 22 33 44 55</p>
+</div>
+
+<!-- billedsektion -->
+  <div class="billedesektion">
+    <img class="cedric1" src="/images/ventevaerelse.jpg" alt="foto af Cedric Fauntleroy -> billede viser en læge og patient, der snakker i et lyst lokale">
+    <img class="thirdman1" src="images/laeger.jpg" alt="foto af Thirdman -> billede viser to læger, der snakker på et kontor">
+  </div>
+
+  <!--boks i sekundær farve-->
+<div class="sekundærbox1"></div>
+
+
+
+<!-- E-mail Konsultation -->
+<div class="email">
+  <h2>E-mail Konsultation</h2>
+  <p>Kan benyttes via <a href="https://laegevejen.dk/Login">lægevejen</a> til korte afgrænsede problemstillinger. <br>
+  Der må påberegnes op til 3 hverdage til svar, hvorfor e-mail konsultation ikke egner sig til akutte problemstillinger</p>
+</div>
+
+<!-- TelefonKonsultation -->
+<div class="telefonkonsultation">
+  <h2>Telefonkonsultation med lægen</h2>
+<p>Lægerne har “ringe tilbage tid” alle hverdage mellem kl. 11:00 og 
+  kl. 13:00. <br>
+  For telefonkonsultation samme dag, kontaktes lægehuset 
+  inden kl. 11:00 og det aftales med sekretæren, hvornår lægen ringer 
+  tilbage. Det er vigtigt at du tager telefonen i det aftalte tidsrum,  når
+  lægen ringer til dig.</p>
+</div>
+
+
+  <!-- Footer -->
+  <div class="indexfooter">
+    <div class="col1">
+      <img class="logofooter" src="/images/logo.svg" alt="logo for fjordens lægehus">
+      <img src="/images/faviconlogo.svg" alt="logo for fjordens lægehus" class="logofooterlille">
+      <p>Fjordvej 0, <br>0000 Fjordby</p>
+      <p><a href="/findvej.html">Find Vej</a></p>
+      <p><a href="#">Log på selvbetjening</a></p>
+      <p><span style="font-weight:500">Ved livstruende situationer ring 112</span></p>
+      <p>Dette site har kun til undervisningsformål</p>
+      </div>
+      <div class="col2">
+        <p><span style="font-weight:500">Konsultationstider</span> man-tor 8:00-16:00 fre 8:00-12:00</p>
+      <p><span style="font-weight:500">Ring til lægesekretæren</span> mellem 8:00-10:00 og igen 10:30-12:00 på Tlf 00 11 22 33 </p>
+      <p><span style="font-weight:500">Ved akut opstået sygdom</span>  fra 
+        12:00-16:00 i hverdagene ring
+        Tlf 11 22 33 44 </p>
+      <p>Fra 16:00-8:00 hverdage samt hele døgnet weekend og helligdage <span style="font-weight:500">ring til lægevagt</span>
+        <br>
+        Tlf 11 22 33 44</p>
+      </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="fjordens lægehus, rutevejledning, find vej">
+    <meta name="author" content="Sarah Sandager Jensen">
+    <meta name="description" content="Find vej til Fjordens Lægehus. Vi har rutevejledninger til bil, bus og tog, så du trygt kan finde frem.">
+    <title>Find vej | Fjordens Lægehus</title>
+    <!-- Nedenstående sørger for at vi ikke bliver indekseret på google -->
+    <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+    <link rel="stylesheet" href="stylesheet.css">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"><!--Google Material Design icons - for kryds i popup-->
+</head>
+<body>
+
+
+
+ <div class="menucontainer">
+  <nav class="navbar">
+    <a href="/index.html"><img src="/images/logo.svg" alt="logo for fjordens lægehus" class="logo"></a>
+    <ul class="navmenu"> <!--Første liste-->     
+
+    
+       <li id="nav1" class="dropdown">
+        <div><a class="active" href="#">Om Lægehuset</a></div>
+          <div class="dropmargin"><ul class="dropdown-content">
+            <li><a href="/personale.html">Personale</a></li>
+            <li><a href="/findvej.html">Find Vej</a></li>
+            <li><a href="#">Samarbejdspartnere</a></li>
+            <li><a href="#">Nyheder</a></li>
+            <li><a href="#">Kontakt</a></li>
+          </ul></div>
+          </li>
+
+          <li  id="nav2" class="dropdown">
+            <div><a class="dropbtn" href="/patienthåndbog.html">Diverse Symptomer</a></div>
+              <div class="dropmargin"><ul class="dropdown-content">
+                <li><a href="#">Vejledninger til Forældre</a></li>
+                <li><a href="#">Vejledninger til Gravide</a></li>
+                <li><a href="/patienthåndbog.html">Læs om alle symptomer</a></li>
+              </ul></div>
+            </li>
+          
+          <li id="nav3" class="dropdown">
+            <div><a class="dropbtn" href="#">Vaccinationer</a></div>
+            <div class="dropmargin"><ul class="dropdown-content">
+              <li><a href="#">Børnevaccinationer</a></li>
+              <li><a href="#">Sæsonvaccinationer</a></li>
+            <li><a href="#">Rejsevaccinationer</a></li>
+            </ul></div>
+          </li>
+
+        <li class="dropdown" id="selvbetjening"> <!--List item 1 -->
+          <div><a class="dropbtn" href="#">Selvbetjening</a></div>
+          <div class="dropmargin"><ul class="dropdown-content">
+            <li><a href="#">Receptfornyelse</a></li>
+            <li><a href="#">Tidsbestilling</a></li>
+          <li><a href="#">E-mail konsultation</a></li>
+          </ul></div>
+      </li>   
+
+            
+          </ul>
+          <div class="hamburger">
+            <button aria-label="menu-knap" type="button" >
+              <span class="bar"></span>
+              <span class="bar"></span>
+              <span class="bar"></span></button>
+          </div>
+      </nav>  
+    </div>
+    <script>
+      const hamburger = document.querySelector(".hamburger");
+  const navMenu = document.querySelector(".navmenu");
+  
+  hamburger.addEventListener("click", () => {
+      hamburger.classList.toggle("active");
+      navMenu.classList.toggle("active");
+   })
+  
+   document.querySelectorAll(".dropdown").forEach(n => n. addEventListener("click", () => {
+      hamburger.classList.remove("active")
+      navMenu.classList.remove("active")
+   }))
+  
+    </script>
+  
+<!--112 banner-->
+<div class="banner">
+  <div class="banner-content">
+    <p>Ved livstruende situationer, ring til 112</p>
+    <button class="banner-close" type="button"><span class="material-symbols-outlined">
+      close
+      </span></button>
+  </div>
+</div>
+ <!--Herunder er javascript til at lukke når man trykker på kryds. Har lært metoden af dcode på youtube https://www.youtube.com/watch?v=x-LVUk2IxDU  -->
+<script>
+  document.querySelector(".banner-close") .addEventListener("click", function() {
+      this.closest(".banner").style.display="none";
+  } );
+  </script>
+
+  <!--boks i sekundær farve-->
+  <div class="sekundærbox2"> </div>
+
+<!--Find vej tekst-->
+<div class="findvej">
+  <h1>Find vej </h1>
+<p>Vores addresse er Fjordvej 0, 0000 Fjordby. <br> Man kan nemmest komme til lægehuset med bil, men der går også busser, samt tog til byen. </p>
+<a href="https://www.rejseplanen.dk/">Planlæg din rejse på Rejseplanen.dk</a>
+</div>
+
+<div class="bil">
+  <h2>I bil</h2>
+    <p>Ved rundkørslen med Kuben på 
+      Herningvej drejes mod Velling 
+      (mod fjorden). 
+      Følg ringvejen til du har passeret 
+      jernbanen, derefter er det 1. vej på 
+      højre hånd. 
+      Huset er ottekantet og synligt fra 
+      vejen, så du kan ikke tage fejl.</p>
+</div>
+
+<div class="tog">
+  <h2>Med tog</h2>
+  <p>Tag toget mod Ringkøbing og 
+    stå af ved Ringkøbing Station.
+    Herfra er der 2 kilometer til
+    lægehuset. Vi kan derfor anbefale
+    at tage en bus resten af vejen</p>
+</div>
+
+<div class="bus">
+  <h2>Med bus</h2>
+  <p>Med bus 560 kan du komme til
+    lægehuset både fra Velling Kirkeby
+    og Ringkøbing.
+    Bussen går flere gange om dagen.
+  </p>
+</div>
+
+<img class="kort" src="/images/kort.jpg" alt="illustreret kort over Ringkøbing området med logoet til at indikere lægehusets placering">
+
+
+     <!-- Footer -->
+     <div class="findvejfooter">
+      <div class="col1">
+        <img class="logofooter" src="/images/logo.svg" alt="logo for fjordens lægehus">
+        <img src="/images/faviconlogo.svg" alt="logo for fjordens lægehus" class="logofooterlille">
+        <p>Fjordvej 0, <br>0000 Fjordby</p>
+        <p><a href="/findvej.html">Find Vej</a></p>
+        <p><a href="#">Log på selvbetjening</a></p>
+        <p><span style="font-weight:500">Ved livstruende situationer ring 112</span></p>
+        <p>Dette site har kun til undervisningsformål</p>
+        </div>
+        <div class="col2">
+          <p><span style="font-weight:500">Konsultationstider</span> man-tor 8:00-16:00 fre 8:00-12:00</p>
+        <p><span style="font-weight:500">Ring til lægesekretæren</span> mellem 8:00-10:00 og igen 10:30-12:00 på Tlf 00 11 22 33 </p>
+        <p><span style="font-weight:500">Ved akut opstået sygdom</span>  fra 
+          12:00-16:00 i hverdagene ring
+          Tlf 11 22 33 44 </p>
+        <p>Fra 16:00-8:00 hverdage samt hele døgnet weekend og helligdage <span style="font-weight:500">ring til lægevagt</span>
+          <br>
+          Tlf 11 22 33 44</p>
+        </div>
+      </div>
+</body>
+</html>

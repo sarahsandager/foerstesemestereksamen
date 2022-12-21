@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="fjordens lægehus, personale, læger, sygeplejersker, lægesekretærer, fysiotereapeut">
+    <meta name="author" content="Sarah Sandager Jensen">
+    <meta name="description" content="Vi er et lægehus fyldt med smil og tryghed, takket være vores engagerede og dygtige medarbejdere. Mød dem her">
+    <title>Vores Personale | Fjordens Lægehus </title>
+    <!-- Nedenstående sørger for at vi ikke bliver indekseret på google -->
+    <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+    <link rel="stylesheet" href="stylesheet.css">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"> <!--Google Material Design icons - for kryds i popup-->
+</head>
+<body>
+
+
+ 
+ <div class="menucontainer">
+  <nav class="navbar">
+    <a href="/index.html"><img src="/images/logo.svg" alt="logo for fjordens lægehus" class="logo"></a>
+    <ul class="navmenu"> <!--Første liste-->     
+
+    
+       <li id="nav1" class="dropdown">
+        <div><a class="active" href="#">Om Lægehuset</a></div>
+          <div class="dropmargin"><ul class="dropdown-content">
+            <li><a href="/personale.html">Personale</a></li>
+            <li><a href="/findvej.html">Find Vej</a></li>
+            <li><a href="#">Samarbejdspartnere</a></li>
+            <li><a href="#">Nyheder</a></li>
+            <li><a href="#">Kontakt</a></li>
+          </ul></div>
+          </li>
+
+          <li  id="nav2" class="dropdown">
+            <div><a class="dropbtn" href="/patienthåndbog.html">Diverse Symptomer</a></div>
+              <div class="dropmargin"><ul class="dropdown-content">
+                <li><a href="#">Vejledninger til Forældre</a></li>
+                <li><a href="#">Vejledninger til Gravide</a></li>
+                <li><a href="/patienthåndbog.html">Læs om alle symptomer</a></li>
+              </ul></div>
+            </li>
+          
+          <li id="nav3" class="dropdown">
+            <div><a class="dropbtn" href="#">Vaccinationer</a></div>
+            <div class="dropmargin"><ul class="dropdown-content">
+              <li><a href="#">Børnevaccinationer</a></li>
+              <li><a href="#">Sæsonvaccinationer</a></li>
+            <li><a href="#">Rejsevaccinationer</a></li>
+            </ul></div>
+          </li>
+
+        <li class="dropdown" id="selvbetjening"> <!--List item 1 -->
+          <div><a class="dropbtn" href="#">Selvbetjening</a></div>
+          <div class="dropmargin"><ul class="dropdown-content">
+            <li><a href="#">Receptfornyelse</a></li>
+            <li><a href="#">Tidsbestilling</a></li>
+          <li><a href="#">E-mail konsultation</a></li>
+          </ul></div>
+      </li>   
+
+            
+          </ul>
+          <div class="hamburger">
+            <button aria-label="menu-knap" type="button" >
+              <span class="bar"></span>
+              <span class="bar"></span>
+              <span class="bar"></span></button>
+          </div>
+      </nav>  
+    </div>
+    <script>
+      const hamburger = document.querySelector(".hamburger");
+  const navMenu = document.querySelector(".navmenu");
+  
+  hamburger.addEventListener("click", () => {
+      hamburger.classList.toggle("active");
+      navMenu.classList.toggle("active");
+   })
+  
+   document.querySelectorAll(".dropdown").forEach(n => n. addEventListener("click", () => {
+      hamburger.classList.remove("active")
+      navMenu.classList.remove("active")
+   }))
+  
+    </script>
+  
+
+  <!--112 banner-->
+<div class="banner">
+  <div class="banner-content">
+    <p>Ved livstruende situationer, ring til 112</p>
+    <button class="banner-close" type="button"><span class="material-symbols-outlined">
+      close
+      </span></button>
+  </div>
+</div>
+ <!--Herunder er javascript til at lukke når man trykker på kryds. Har lært metoden af dcode på youtube https://www.youtube.com/watch?v=x-LVUk2IxDU  -->
+<script>
+  document.querySelector(".banner-close") .addEventListener("click", function() {
+      this.closest(".banner").style.display="none";
+  } );
+  </script>
+
+
+  <!--boks i sekundær farve-->
+  <div class="sekundærbox2"> </div>
+
+<!--Personale tekst-->
+<div class="vorespersonale">
+  <h1>Vores Personale </h1>
+<p>Vi er et stærkt team bestående af 3 læger, 3 sygeplejersker, 4 læge-
+  sekretærer, 2 bioanalytikere og 1 fysioterapeut. <br>
+  Alle vores medarbejdere er en essentiel del af at få hverdagen til at 
+  hænge sammen her i lægehuset, og vi er stolte af at præsentere vores
+  personale her på denne side. </p>
+</div>
+
+<!--Personale sektion-->
+<div class="personale">
+ 
+  <section class="lis">
+    <h2 class="personaleh2" style="color:#fff;">Lis Visholm Sørensen</h2>
+    <figure class="portrait">  
+    <img  src="/images/personale/lisvisholm.jpg" alt="sort hvidt portræt af fiktiv læge Lis Visholm Sørensen - billede af Humberto Chavez ">
+    <div class="about">
+        <p>Lis har arbejdet i Fjordens Lægehus i 11 år. Før det arbejdede hun ved Tarm Lægehus. Lis blev færdiguddannet i 1987.
+          Lis har stor erfaring indenfor tidlig diagnosticering af kronisk sygdom hos børn og unge.</p>
+    </div>
+    </figure>
+     <h4 class="listitel">Speciallæge i almen medicin</h4>
+    </section>
+
+  <section class="mateo">
+    <h2 class="personaleh2" style="color:#fff;">Mateo Rodrigues</h2>
+    <figure class="portrait">
+    <img  src="/images/personale/mateo.jpg" alt="sort hvidt portræt af fiktiv læge Mateo Rodrigues - billede af Bruno Rodrigues">
+    <div class="about">
+        <p>Mateo har arbejdet i Fjordens Lægehus i 3 år. Før det arbejdede han ved Aabyhøj Lægehus. Mateo blev færdiguddannet i 2007.
+          Mateo har stor erfaring indenfor mave og tarm problemer.</p>
+    </div>
+    </figure>
+    <h4 class="mateotitel">Speciallæge i almen medicin</h4>
+    </section>
+
+  <section class="annesofie">
+    <h2 id="anne">Anne-Sofie Kristensen</h2>
+    <figure class="portrait">
+    <img  src="/images/personale/annesofie.jpg" alt="sort hvidt portræt af fiktiv læge Anne Sofie Kristensen - billede af Antoni Shkraba">
+    <div class="about">
+        <p>Anne-Sofie har arbejdet i Fjordens Lægehus i 4 år. Før det arbejdede hun ved Cityklinikken. Anne-Sofie blev færdiguddannet i 2013.
+          Anne-Sofie har stor erfaring indenfor ADHD og autisme.</p>
+    </div>
+    </figure>
+    <h4 class="annetitel">Speciallæge i almen medicin</h4>
+    </section>
+
+
+    <section class="jeanette">
+      <h2 class="personaleh2">Jeanette Kirkegaard</h2>
+      <figure class="portrait">  
+      <img  src="/images/personale/JeanetteKirkegaard.jpg" alt="sort hvidt portræt af fiktiv sygeplejerske Jeanette Kirkegaard - billede af Tran Nhu Tuan">
+      <div class="about">
+          <p>Jeanette har arbejdet i Fjordens Lægehus i 8 år. Jeanette blev færdiguddannet i 2013.
+            Jeanette har stor erfaring indenfor behandling af diabetes.</p>
+      </div>
+      </figure>
+       <h4 class="jeanettetitel">Sygeplejerske</h4>
+      </section>
+  
+    <section class="hanne">
+      <h2 class="personaleh2">Hanne Juhl</h2>
+      <figure class="portrait">
+      <img  src="/images/personale/HanneJuhl.jpg" alt="sort hvidt portræt af fiktiv sygeplejerske Hanne Jugl- billede af Rian Ramirez">
+      <div class="about">
+          <p>Hanne har arbejdet i Fjordens Lægehus i 7 år. Før det har hun arbejdet på Skejby Sygehus. Hanne blev færdiguddannet i 2002. 
+            Hanne har stor erfaring indenfor kvindesygdomme.
+          </p>
+      </div>
+      </figure>
+      <h4 class="hannetitel">Sygeplejerske</h4>
+      </section>
+  
+    <section class="tanja">
+      <h2 class="personaleh2">Tanja Gammeljord</h2>
+      <figure class="portrait">
+      <img  src="/images/personale/TanjaGammeljord.jpg" alt="sort hvidt portræt af fiktiv sygeplejerske Tanja Gammeljord - billede af Alexander Zvir">
+      <div class="about">
+          <p>Tanja har arbejdet i Fjordens Lægehus i 6 år. Tanja blev færdiguddannet i 2015.
+            Tanja har stor erfaring indenfor allergi.</p>
+      </div>
+      </figure>
+      <h4 class="tanjatitel">Sygeplejerske</h4>
+      </section>
+
+      <section class="linnea">
+        <h2 class="personaleh2">Linnea Larsen</h2>
+        <figure class="portrait">  
+        <img  src="/images/personale/LinneaLarsen.jpg" alt="sort hvidt portræt af fiktiv fysioterapeut Linnea Larsen- billede af Los Muertos Crew">
+        <div class="about">
+            <p>Linnea har arbejdet i Fjordens Lægehus i 1 år. Linnea blev færdiguddannet i 2006.
+              Linnea er den eneste fysioterapeut i huset, og hjælper patienter der kommer med smerter i bevægeapparatet(skulder, nakke, håndled, ryg osv).</p>
+        </div>
+        </figure>
+         <h4 class="linneatitel">Fysioterapeut</h4>
+        </section>
+    
+      <section class="thomas">
+        <h2 class="personaleh2">Thomas Pugholm</h2>
+        <figure class="portrait">
+        <img  src="/images/personale/thomaspugholm.jpg" alt="sort hvidt portræt af fiktiv bioanalytiker Thomas Pugholm - billede af Dalton Ngangi">
+        <div class="about">
+            <p>Thomas har arbejdet i Fjordens Lægehus i 8 år. Før det arbejdede han ved Århus Universitetshospital. Thomas blev færdiguddannet i 2003.
+          </p>
+        </div>
+        </figure>
+        <h4 class="thomastitel">Bioanalytiker</h4>
+        </section>
+    
+      <section class="ronja">
+        <h2 class="personaleh2">Ronja Karlsen</h2>
+        <figure class="portrait">
+        <img  src="/images/personale/ronjakarlsen.jpg" alt="sort hvidt portræt af bioanalytiker Ronja Karlsen - billede af Mike San">
+        <div class="about">
+            <p>Ronja har arbejdet i Fjordens Lægehus i 10 år. Før det arbejdede hun ved Horsens Regionshospital. Ronja blev færdiguddannet i 2009.
+               </p>
+        </div>
+        </figure>
+        <h4 class="ronjatitel">Bioanalytiker</h4>
+        </section>
+
+        <section class="louise">
+          <h2 class="personaleh2">Louise Jørgensen</h2>
+          <figure class="portrait">  
+          <img  src="/images/personale/louisejørgensen.jpg" alt="sort hvidt portræt af fiktiv lægesekretær Louise Jørgensen- billede af 
+          Christina @ wocintechchat.com ">
+          <div class="about">
+              <p>Louise har arbejdet i Fjordens Lægehus i 2 år. Louise blev færdiguddannet i 2019. Louise har ansvar for kursusplanlægning. </p>
+          </div>
+          </figure>
+           <h4 class="louisetitel">Lægesekretær</h4>
+        </section>
+        
+        <section class="diana">
+          <h2 class="personaleh2">Diana Lene Klaustrup</h2>
+          <figure class="portrait">  
+          <img  src="/images/personale/dianalene.jpg" alt="sort hvidt portræt af fiktiv lægesekretær Diana Lene Klaustrup- billede af Meghan Holmes">
+          <div class="about">
+              <p>Diana har arbejdet i Fjordens Lægehus i 16 år. Diana blev færdiguddannet i 1988. Diana er sikkerhedsrepræsentant.</p>
+          </div>
+          </figure>
+            <h4 class="dianatitel">Lægesekretær</h4>
+          </section>
+
+        <section class="vivi">
+          <h2 class="personaleh2">Vivi Andersen</h2>
+          <figure class="portrait">  
+          <img  src="/images/personale/Viviandersen.jpg" alt="sort hvidt portræt af fiktiv lægesekretær Vivi Andersen - billede af 
+          Christina Morillo">
+          <div class="about">
+              <p>Vivi har arbejdet i Fjordens Lægehus i 13 år. Vivi blev færdiguddannet i 1993. Vivi varetager varebestilling</p>
+          </div>
+          </figure>
+            <h4 class="vivititel">Lægesekretær</h4>
+          </section>
+
+        <section class="else">
+          <h2 class="personaleh2">Else Hornbæk</h2>
+          <figure class="portrait">  
+          <img  src="/images/personale/elsehornbæk.jpg" alt="sort hvidt portræt af fiktiv lægesekretær Else Hornbæk billede af Christina Morillo">
+          <div class="about">
+              <p>Else har arbejdet i Fjordens Lægehus i 10 år. Else blev færdiguddannet i 2000. Else foretager rekvireringer og arbejder med EDI portalen</p>
+          </div>
+          </figure>
+            <h4 class="elsetitel">Lægesekretær</h4>
+          </section>
+      
+        </div>
+
+   <!-- Footer -->
+   <div class="personalefooter">
+    <div class="col1">
+    <img class="logofooter" src="/images/logo.svg" alt="logo for fjordens lægehus">
+    <img src="/images/faviconlogo.svg" alt="logo for fjordens lægehus" class="logofooterlille">
+    <p>Fjordvej 0, <br>0000 Fjordby</p>
+    <p><a href="/findvej.html">Find Vej</a></p>
+    <p><a href="#">Log på selvbetjening</a></p>
+    <p><span style="font-weight:500">Ved livstruende situationer ring 112</span></p>
+    <p>Dette site har kun til undervisningsformål</p>
+    </div>
+    <div class="col2">
+      <p><span style="font-weight:500">Konsultationstider</span> man-tor 8:00-16:00 fre 8:00-12:00</p>
+    <p><span style="font-weight:500">Ring til lægesekretæren</span> mellem 8:00-10:00 og igen 10:30-12:00 på Tlf 00 11 22 33 </p>
+    <p><span style="font-weight:500">Ved akut opstået sygdom</span>  fra 
+      12:00-16:00 i hverdagene ring
+      Tlf 11 22 33 44 </p>
+    <p>Fra 16:00-8:00 hverdage samt hele døgnet weekend og helligdage <span style="font-weight:500">ring til lægevagt</span>
+      <br>
+      Tlf 11 22 33 44</p>
+    </div>
+  </div>
+</body>
+</html>

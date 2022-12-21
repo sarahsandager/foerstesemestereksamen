@@ -1,0 +1,2578 @@
+/* --primary-color:#0092B9; */
+
+/*Her sætter jeg to variabler, der gør det nemt for mig at skifte farve i layoutet, ved blot at ændre dem heroppe.*/
+:root {
+    --primary-color:#13557e;
+    --secondary-color: #625467;
+}
+
+/*Her har jeg valgt en font-family, med min ønskede font først, samt to font bagefter i tilfælde af at browseren ikke kender den første.
+Jeg har også nulstillet margin og sørget for at alt er venstrejusteret som udgangspunkt. */
+html {
+    font-family: 'Avenir Next', Helvetica, sans-serif;
+    margin:0;
+    width:100%; 
+    text-align: left;
+}
+
+
+/*Her har jeg sat størrelsen på de forskelle 'tekst-tags'. Jeg har brugt størrelsesmetoden 'viewport-width' forkortet som vw, for at 
+gøre siden responsiv. Det er denne metode jeg primært bruger igennem hele CSS. 2vw svarer fx til 2% af viewportens bredde. 
+Jeg valgte det i stedet for % for at det altid vil være procent af viewporten og ikke af fx parent-elementet.
+Jeg har også sat font-weight til 400(normal) ved H1 og H2, mens jeg har gjort den til 300(light) ved p.
+Jeg har refereret til min farve-variabel, ligesom jeg kommer til at gøre mange gange senere.*/
+
+h1 {
+  font-family: 'Avenir Next', Helvetica, sans-serif;
+  color: var(--primary-color);
+  font-weight: normal;
+  font-size:2vw;
+  line-height:2.5vw;
+  font-weight:400;
+}
+
+h2 {
+  font-family: 'Avenir Next', Helvetica, sans-serif;
+  color: var(--primary-color);
+  font-weight: normal;
+  font-size:2vw;
+  line-height:2.5vw;
+  font-weight:400;
+}
+
+p {
+  font-family: 'Avenir Next', Helvetica, sans-serif;
+  color: var(--primary-color);
+  font-size:1.5vw;
+  font-weight:300;
+  line-height:2.5vw;
+}
+
+/*Fjernet border og baggrund fra knapper - dette kunne alternativt gøres under min hamburgerknap, da den endte med at være den eneste. Dog ved 
+at gøre det her, har man mulighed for at lave flere knapper i fremtiden/hvis man brugte resten af siderne. */
+button {
+  border:none;
+  background:none;
+}
+/*Under a har jeg fjernet tekstdekoration, givet den en sekundær farve til at skille sig ud fra alm tekst og gjort at den bliver tyk ved hover.*/
+
+a {
+  text-decoration: none;
+  color:var(--secondary-color);
+  font-size:1.5vw;
+}
+
+a:hover {
+  font-weight:500;
+}
+
+body {
+    margin:0;
+}
+
+
+/* ---------------------------112 BANNER ----------------------------- */
+
+
+.banner {
+  background-color: var(--primary-color);
+  height:5vw;
+  position:absolute;
+  top:3vw;
+  width:100vw;
+  z-index:2;
+}
+
+/*Jeg har sat contentet til display flex, for at kunne justere det i midten af banneret som jeg har sat en højde på. Derudover har jeg centreret 
+i p.*/
+.banner-content {
+  padding:.5vw;
+  margin-top:0;
+  padding-top:0;
+  margin:auto;
+  display: flex;
+  align-items:center;
+  justify-content: center;
+}
+.banner-content p {
+  color: #fff;
+  text-align:center;
+}
+
+/*Det her er knappen til at slukke banneret som jeg har 'vækket til live' med JavaScript. Jeg har givet det en farve, fjernet den almene knap-styling
+og sørget for at ens cursor bliver til en 'pointer'(tryk-her-knap-hånd) når man hover. Det er for at hjælpe folk med at forstå det er funktionelt, 
+når de kører over.*/
+.banner-close {
+  background:none;
+  border:none;
+  color:#fff;
+  cursor: pointer;
+}
+
+/* ---------------------------NAV BAR / MENU ----------------------------- forsøg */
+
+/* Her sørger jeg for at min navigationsbar er fixed i toppen af siden med position:fixed */
+.menucontainer {
+  position:fixed;
+  z-index:3;
+  background-color:#fff;
+  width:100vw;
+  border-bottom: solid 2px var(--primary-color);
+}
+
+/*Min navigation er lavet med flex, hvor jeg sørger for at der er lige meget luft imellem hver, med space-between.*/
+.navbar {
+  display:flex;
+  justify-content: space-between;
+  align-items:center;
+  padding:0 2vw;
+}
+
+.navmenu {
+  display: flex;
+  justify-content: space-between;
+  align-items:center;
+  margin:.3vw;
+}
+
+/*De her hedder dropbtn, fordi de originalt var lavet som buttons. Dog fandt jeg ud af at det ikke var valid HTML at have en button hverken med onclick, eller
+a-tags, så de ville ikke funktionelt kunne linke og være valid HTML ved W3C's standarder. De er i stedet lavet om til div i HTML med a-tags.
+Her styler jeg dem */
+.dropbtn {
+  background-color: #fff;
+  color: var(--primary-color);
+  padding: 2.2vw;
+  padding-bottom:0;
+  font-size: 1.2vw;
+}
+
+/*Ved hover skifter min dropbtn farve til den sekundære farve*/
+.dropdown:hover .dropbtn {
+  color: var(--secondary-color);
+}
+
+/*Som udgangspunkt er dropdown-content og drop-margin sat til display:none, da de skal gemmes indtil man hover over det tilhørende menupunkt/dropbtn.
+Jeg har også sat en min-width på 10vw, så punkterne ikke bliver delt/wrapper til næste linje eller overflower containeren. Ved #nav2 har jeg targetet 
+den specifikt og gjort den til 15vw, da dens punkter var længere.
+Z-index er også sat til 1, for at det går over headerbillede, banner osv.*/
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color:var(--secondary-color);
+  min-width: 10vw;
+  padding:1vw;
+  z-index: 2;
+}
+
+/*Min dropmargin div var ikke som udgangspunkt nødvendig, og jeg kunne godt bruge den første div, dropdown-content til formålet,
+men jeg ville gerne have at min dropdown kunne få en 'margin', så dens kant ville flugte med 112-banneret eller headerbilledets øverste kant.
+Man kunne ikke tilføje en margin til den første, da det ville gøre at man ikke længere hover på dropbtn når man prøver at flytte musen ned,
+og så ville den gå tilbage til display none. Hvis jeg brugte padding, ville det beholde baggrundsfarven i paddingen, og heller ikke opnå mit 
+ønskede resultat. Jeg bruger derfor .dropdown-content div'en som ekstra padding, ved ikke at lade den have nogen ekstra indhold/farve, men
+når du hover over, vil dropmargin stadig blive ved med at blive set. */
+
+.dropmargin {
+  display: none;
+  position: absolute;
+  min-width: 10vw;
+  padding:1.2vw;
+  z-index: 2;
+}
+
+#nav2 .dropmargin {
+  min-width:15vw;
+}
+
+.dropdown-content a {
+  color: #fff;
+  font-size:1.2vw;
+  font-weight:400;
+  padding: .5vw .5vw;
+  display: block;
+}
+
+/*Her gør jeg at linksene bliver tykke når man hover. Originalt skulle de have skiftet farve, men en testperson mente at det blev svært at se med
+den tiltænkte farve-kombination, og i stedet for at introducere en 3 farve i designet, valgte jeg at gøre hvid tyk. Det mente testpersonen også 
+var en klar indikator af hvad man hover over.*/
+.dropdown-content a:hover {
+  font-weight:500;
+}
+
+/*Herunder gør jeg så dropdown-content og dropmargin displayer som block når man hover.*/
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.dropdown:hover .dropmargin {
+  display: block;
+}
+
+/*Her placeres logoet og gives størrelse*/
+.logo {
+  width:14vw;
+  margin-left:5vw;
+  margin:.5vw;
+  padding-top:.5vw;
+}
+
+/*Fjerner list styles*/
+li {
+  list-style: none;
+}
+
+/*Her starter jeg på min hamburger menu. Den skal som udgangspunkt ikke vises, først når siden bliver under 1200px. Det gøres med media queries i bunden
+af mit css. Derfor er display sat til none. Cursor er sat til pointer for at indikere man kan klikke(når det vises senere).*/
+.hamburger {
+  background:none;
+  border:none;
+   display:none;
+   cursor:pointer;
+}
+
+/*Her er selve burger delen lavet med 3 spans inde i button der alle har fået navnet bar. De styles til at være tre linjer, der sidder ovenpå hinanden*/
+.bar {
+  background:none;
+  border:none;
+  display:block;
+  width:25px;
+  height:3px;
+  margin:5px auto;
+  background-color: var(--primary-color);
+
+}
+
+/*Denne class bruges til at gøre en dropbtn den sekundære farve, når man er inde på en af de undersider der hører til den.*/
+.active {
+  color: var(--secondary-color);
+  font-weight:500;
+  padding: 2.2vw;
+  font-size: 1.2vw;
+}
+/*-----------------------------------------------INDEX !! FORSIDE *---------------------------------------------------/
+
+  /* ---------------------------HEADER ----------------------------- */
+
+
+
+  .headerimg {
+    width:100vw;
+    margin:0;
+    position:relative;
+}
+
+/* Dette er den transparente del af headeren. Den centreres med left og transform-translate. Den er blevet transparent ved at gøre brug af alfa-kanalen i rgba.
+Den er absolut placeret, så den kunne sidde over headerbilledet. Derudover har jeg centreret indholdet.*/
+.header {
+    position:absolute;
+    width:35vw;
+    height: 22vw;
+    left: 50%;
+    transform: translate(-50%, 0);
+    top:12vw;
+    padding:.8vw 4vw;
+    background-color: rgba(255, 255, 255, 0.7);
+}
+
+.headerindhold {
+  position:relative;
+  
+}
+
+/* Jeg har her targetet den specifikke H1 på forsiden og gjort den større end den almene H1 styling. */
+.headerindhold h1 {
+    font-family: 'Avenir Next', Helvetica, sans-serif;
+    color: var(--primary-color);
+    font-weight: normal;
+    font-size:4vw;
+    line-height:4.5vw;
+    text-align:center;
+}
+
+
+/* Her har jeg lavet selvbetjenings 'knappen', der heller ikke er en knap længere pga W3C standarden. Den skifter farve på hover. 
+Derudover er den også absolut placeret, så den kunne sættes inde i headeren*/
+.selvbetjening a {
+  position:absolute;
+  background-color:var(--primary-color);
+  width: 32vw;
+  height: 4vw;
+  left: 50%;
+  transform: translate(-50%, 0);
+  top:10vw;
+  color: #fff;
+  padding: 1vw;
+  font-size: 3vw;
+  font-weight:200;
+  text-align:center;
+}
+
+.selvbetjening a:hover {
+  position:absolute;
+  width: 32vw;
+  height: 4vw;
+  left: 50%;
+  transform: translate(-50%, 0);
+  top:10vw;
+  background-color: var(--secondary-color);
+  padding: 1vw;
+  font-size: 3vw;
+}
+
+/* ---------------------------BILLEDESEKTION ----------------------------- */
+
+/* Her er der en billede sektion, med to billeder der overlapper hinanden. De har begge fået en drop-shadow med et filter.
+Thirdman1 har også fået en z-index på -1, for at den anden kan overlappe den.*/
+.cedric1 {
+  position:absolute;
+  margin-left:10vw;
+  top:139vw;
+  width:40vw;
+  filter:drop-shadow(10px 10px 5px #392b3d);
+}
+
+.thirdman1 {
+  position:absolute;
+  top:143vw;
+  right:0;
+  margin-right:10vw;
+  width:45vw;
+  z-index: -1;
+  filter:drop-shadow(10px 10px 5px #392b3d);
+  }
+  
+
+/* ---------------------------TELEFON ----------------------------- */
+/* Telefon-numre og åbningstider er alle kommet i kasser vha. border. Derudover er de alle placeret absolut, så de kunne komme ovenpå headerbilledet. 
+De har også alle en dropshadow fra et filter. De yderste er placeret med 10vw margin til den side de er tættest på, og derefter er 
+det midterste(akuttelefonen) sat ind på midten af siden med left og transform-translate - så der er lige meget afstand til begge fra den.*/
+
+.lægetelefon {
+  top:44vw;
+  position:absolute;
+  background-color: #fff;
+  color: var(--primary-color);
+  margin-left:10vw;
+  width:20vw;
+  padding:.5vw 2vw;
+  background-color:#fff;
+  border-style:solid;
+  border-width: .15vw;
+  border-color: var(--primary-color);
+  filter:drop-shadow(10px 10px 5px #392b3d);
+  height:22vw;
+}
+.akuttelefon {
+  top:44vw;
+  position:absolute;
+  background-color: #fff;
+  color: var(--primary-color);
+  left: 50%;
+  transform: translate(-50%, 0);
+  width:20vw;
+  padding:.5vw 2vw;
+  background-color:#fff;
+  border-style:solid;
+  border-width: .15vw;
+  border-color: var(--primary-color);
+  filter:drop-shadow(10px 10px 5px #392b3d);
+  height:22vw;
+}
+
+.konsultationstid {
+  top:44vw;
+  position:absolute;
+  background-color: #fff;
+  color: var(--primary-color);
+  right:0;
+  margin-right:10vw;
+  width:20vw;
+  padding:.5vw 2vw;
+  background-color:#fff;
+  border-style:solid;
+  border-width: .15vw;
+  border-color: var(--primary-color);
+  filter:drop-shadow(10px 10px 5px #392b3d);
+  height:22vw;
+}
+
+/* ---------------------------LÆGEHUS + KONSULTATIONSTIDER ----------------------------- */
+
+/* Som ved telefonerne, er de stylet på samme måde, blot placeret længere nede. */
+.lægehus {
+  position:absolute;
+  top:74vw;
+  width:30vw;
+  left:0;
+  margin-left:10vw;
+  padding:2vw 4vw;
+  background-color:#fff;
+  border-style:solid;
+  border-width: .15vw;
+  border-color: var(--primary-color);
+  min-height:20vw;
+}
+
+
+.lægevagt {
+  position:absolute;
+  top:74vw;
+  width:30vw;
+  right:0;
+  margin-right:10vw;
+  padding:2vw 4vw;
+  background-color:#fff;
+  border-style:solid;
+  border-width: .15vw;
+  min-height:20vw;
+  border-color: var(--primary-color);
+}
+
+/* Denne box er en blå box der sidder bag dem med en z-index på -1. Den er et design-element. */
+.sekundærbox1 {
+  position:absolute;
+  display:block;
+  top:70vw;
+  width:100vw;
+  height:42vw;
+  background-color: var(--primary-color);
+  z-index: -1;
+}
+
+/* ---------------------------E-mail konsultation ----------------------------- */
+.email {
+  position:absolute;
+  top:101vw;
+  background-color: #fff;
+  color: var(--primary-color);
+  left: 50%;
+  transform: translate(-50%, 0);
+  width:76vw;
+  padding:.5vw 2vw;
+  background-color:#fff;
+  border-style:solid;
+  border-width: .15vw;
+  border-color: var(--primary-color);
+}
+
+/* ---------------------------E-mail konsultation ----------------------------- */
+.telefonkonsultation {
+  position:absolute;
+  top:120vw;
+  background-color: #fff;
+  color: var(--primary-color);
+  left: 50%;
+  transform: translate(-50%, 0);
+  width:76vw;
+  padding:.5vw 2vw;
+  background-color:#fff;
+  border-style:solid;
+  border-width: .15vw;
+  border-color: var(--primary-color);
+}
+/* ---------------------------FOOTER ----------------------------- */
+
+/* Fordi jeg bruger meget absolut positioning har hver side sin egen class til footeren. De har dog alle den samme styling. Grunden er at jeg ved at gøre dem forskellige
+kan give dem forskellige placeringer. Jeg har ikke gjort det til en in-line style i HTML, da jeg under mine media queries også skal kunne rykke på dem, for 
+at tilpasse de gældende layouts. */
+.indexfooter {
+  position: absolute;
+  top:177vw;
+  width:100%;
+  background-color: var(--primary-color);
+  height: 30vw;
+  margin-bottom :-10vw;
+}
+
+.indexfooter p {
+  color: #fff;
+}
+
+.indexfooter img {
+  width:17vw;
+  margin-top:1vw;
+  padding-top:1vw;
+}
+
+.indexfooter a {
+  color: #fff;
+  border-style:solid;
+  border-width: .1vw;
+  border-color: #fff;
+  padding:.3vw;
+}
+
+.logofooter {
+  filter: brightness(0) invert(1);
+}
+
+/* dette logo tager over når der ikke længere er plads til det originale logo med tekst. Dette logo er uden tekst. Det bruges ved små størrelser i media queries,
+og er som standard sat til display none. */
+.logofooterlille {
+  filter: brightness(0) invert(1);
+  display:none;
+}
+
+/* Jeg har lavet to kolonner i footeren med classes. */
+.col1 {
+  display: inline-block;
+  margin-left:15vw;
+  max-width: 30vw;
+}
+
+.col2 {
+  display: inline-block;
+  margin-left:2vw;
+  max-width: 40vw;
+}
+/*-----------------------------------------------PERSONALE SIDE *---------------------------------------------------*/
+.sekundærbox2 {
+  position:relative;
+  display:block;
+  top: 0vw;
+  width:100%;
+  height:40vw;
+  background-color: var(--primary-color);
+  z-index: -1;
+}
+
+.vorespersonale {
+  position: absolute;
+  background-color: #fff;
+  color: var(--primary-color);
+  width:76vw;
+  left: 50%;
+  transform: translate(-50%, 0);
+  top: 10vw;
+  padding:.5vw 2vw;
+  background-color:#fff;
+  border-style:solid;
+  border-width: .15vw;
+  border-color: var(--primary-color);
+}
+
+/* Jeg har på personalesiden brugt et grid. Det har 6 kolonner, der hver har 16,67% af siden. */
+.personale {
+  position: absolute;
+  top:27vw;
+  display:grid;
+  margin:0;
+  column-gap: 1vw;
+  width: 75vw;
+  margin-left:10vw;
+  grid-template-columns: repeat(6, 16.666%);
+}
+
+
+.personale h4 {
+    background-color: var(--primary-color);
+    color:#fff;
+    text-align:center;
+    padding:1vw 0vw;
+    margin:0;
+    font-weight:400;
+  }
+
+
+
+.personale h2 {
+  color: var(--primary-color);
+  margin-top:4vw;
+  margin-bottom:1vw;
+}
+
+/* Anne-Sofie har sin egen styling, da hendes billede rykker i en media query, fra at overlappe den blå boks, til at komme ned på linje to. 
+Hun er derfor target specifikt med et ID, så jeg senere kan lave hendes overskrift blå. På den måde har jeg mulighed for at hendes tekst kan
+læses uanset hvor hendes billede er.*/
+#anne {
+  color: #fff;
+  margin-top:4vw;
+  margin-bottom:1vw;
+}
+
+/* her placeres alle i grid'et. Der er som udgangspunkt 3 i hver række. */
+.lis {
+  grid-column:1/3;
+  grid-row: 1;
+  position:relative;
+}
+
+.listitel {
+  position:absolute;
+  width:100%;
+  bottom:0;
+}
+
+.mateo {
+  grid-column:3/5;
+  grid-row: 1;
+  position:relative;
+}
+
+.mateotitel {
+  position:absolute;
+  width:100%;
+  bottom:0;
+}
+
+.annesofie {
+  grid-column:5/7; 
+  grid-row:1;
+  position:relative;
+}
+
+.annetitel {
+  position:absolute;
+  width:100%;
+  bottom:0;
+}
+
+.jeanette {
+  grid-column:1/3;
+  grid-row: 2;
+  position:relative;
+}
+
+.jeanettetitel {
+  position:absolute;
+  width:100%;
+  bottom:0;
+}
+
+.hanne {
+  grid-column:3/5;
+  grid-row: 2;
+  position:relative;
+}
+
+.hannetitel {
+  position:absolute;
+  width:100%;
+  bottom:0;
+}
+
+.tanja {
+  grid-column:5/7; 
+  grid-row:2;
+  position:relative;
+}
+
+.tanjatitel {
+  position:absolute;
+  width:100%;
+  bottom:0;
+}
+
+.linnea {
+  grid-column:1/3;
+  grid-row: 3;
+  position:relative;
+}
+
+.linneatitel {
+  position:absolute;
+  width:100%;
+  bottom:0;
+}
+
+.thomas {
+  grid-column:3/5;
+  grid-row: 3;
+  position:relative;
+}
+
+.thomastitel {
+  position:absolute;
+  width:100%;
+  bottom:0;
+}
+
+.ronja {
+  grid-column:5/7; 
+  grid-row:3;
+  position:relative;
+}
+
+.ronjatitel {
+  position:absolute;
+  width:100%;
+  bottom:0;
+}
+
+
+.louise {
+  grid-column:1/3;
+  grid-row: 4;
+  position:relative;
+}
+
+.louisetitel {
+  position:absolute;
+  width:100%;
+  bottom:0;
+}
+
+.diana {
+  grid-column:3/5;
+  grid-row: 4;
+  position:relative;
+}
+
+.dianatitel {
+  position:absolute;
+  width:100%;
+  bottom:0;
+}
+
+.vivi {
+  grid-column:5/7; 
+  grid-row:4;
+  position:relative;
+}
+
+.vivititel {
+  position:absolute;
+  width:100%;
+  bottom:0;
+}
+
+.else {
+  grid-column:1/3; 
+  grid-row:5;
+  position:relative;
+}
+
+.elsetitel {
+  position:absolute;
+  width:100%;
+  bottom:0;
+}
+
+/* Overflow er sat til hidden */
+.portrait {
+  margin:0;
+  padding:0;
+  position:relative;
+  overflow: hidden;
+}
+
+/* Her er brugt 100% og ikke vw, da de skal optage 100% af deres specifikke boks, ikke viewporten. Det kommer jeg til at gøre et par gange i løbet
+af CSS'en. */
+.portrait img {
+  width:100%;
+  margin:0;
+}
+
+/* Dette er teksten om den enkelte medarbejder. Det er placeret 100% til venstre for det gældende portræt, så der ikke er noget overlap, og 
+så er overflow sat til hidden under portræt, så man ikke kan se det her. Med en alfakanal er farvelægningen gjort transparent, så man stadig
+kan se personen under. Det er dog farvelagt for at man nemmere kan læse teksten.*/
+.about {
+  position:absolute;
+  padding:4%;
+  top:0;
+  left:100%;
+  right:0;
+  width:100%;
+  height:100%;
+  background-color:rgba(94, 69, 100, 0.8);
+  overflow: hidden;
+  transition: left 1s;
+}
+
+/* her gør jeg så about delen kommer ind, når man hover over et portrætbillede. Left er sat til 0, så den er 'tilbage til start' og så med en
+transition bliver den 'animeret' til at flyde inde fra venstre side over 1s. */
+.portrait img:hover + .about {
+  display:block;
+  position:absolute;
+  width:100%;
+  left:0%;
+  transition: left 1s;
+}
+
+/* dette er for at man kan flytte musen mens man hover, uden at den begynder at transition igen, men i stedet bare bliver fremme. Hvis man fx har musen over noget
+af teksten skal man kunne flytte den uden at teksten flyver væk. */
+.about:hover {
+  transition:none;
+  left:0;
+}
+
+.about p {
+  bottom:0;
+  padding: 3vw;
+  padding-top:0;
+  margin-top:1vw;
+  color: #fff;
+}
+
+/* Her er der som sagt brugt samme styling som i 'indexfooter', den er blot placeret længere nede på siden. */
+.personalefooter {
+  position: absolute;
+  top:235vw;
+  width:100%;
+  background-color: var(--primary-color);
+  height: 30vw;
+  margin-bottom :-10vw;
+}
+.personalefooter p {
+  color: #fff;
+}
+
+.personalefooter img {
+  width:17vw;
+  margin-top:1vw;
+  padding-top:1vw;
+}
+
+.personalefooter a {
+  color: #fff;
+  border-style:solid;
+  border-width: .1vw;
+  border-color: #fff;
+  padding:.3vw;
+}
+
+
+/*-----------------------------------------------FIND VEJ SIDE *---------------------------------------------------*/
+
+.findvej {
+  position: absolute;
+  background-color: #fff;
+  color: var(--primary-color);
+  width:76vw;
+  left: 50%;
+  transform: translate(-50%, 0);
+  top: 10vw;
+  padding:.5vw 2vw 2vw 2vw;
+  background-color:#fff;
+  border-style:solid;
+  border-width: .15vw;
+  border-color: var(--primary-color);
+}
+
+.bil {
+  height:28vw;
+  top:30vw;
+  position:absolute;
+  background-color: #fff;
+  color: var(--primary-color);
+  margin-left:10vw;
+  width:20vw;
+  padding:.5vw 2vw;
+  background-color:#fff;
+  border-style:solid;
+  border-width: .15vw;
+  border-color: var(--primary-color);
+  filter:drop-shadow(10px 10px 5px #392b3d)
+}
+.tog {
+  height:28vw;
+  top:30vw;
+  position:absolute;
+  background-color: #fff;
+  color: var(--primary-color);
+  left: 50%;
+  transform: translate(-50%, 0);
+  width:20vw;
+  padding:.5vw 2vw;
+  background-color:#fff;
+  border-style:solid;
+  border-width: .15vw;
+  border-color: var(--primary-color);
+  filter:drop-shadow(10px 10px 5px #392b3d)
+}
+.bus {
+  height:28vw;
+  top:30vw;
+  position:absolute;
+  background-color: #fff;
+  color: var(--primary-color);
+  right:0;
+  margin-right:10vw;
+  width:20vw;
+  padding:.5vw 2vw;
+  background-color:#fff;
+  border-style:solid;
+  border-width: .15vw;
+  border-color: var(--primary-color);
+  filter:drop-shadow(10px 10px 5px #392b3d)
+}
+
+/* Til en ægte side, der må udgives ordentligt, ville man evt kunne lave designet på kortet om til enten at være et plugin fra Google maps, eller have 
+vejenes navne. Det er dog ikke på min udgave af kortet, da vi selvfølgelig ikke må vise den rigtige addresse.  */
+.kort {
+  position:absolute;
+  width:80vw;
+  top:65vw;
+  left: 50%;
+  transform: translate(-50%, 0);
+  filter:drop-shadow(10px 10px 5px #392b3d);
+}
+
+.findvejfooter {
+  position: absolute;
+  top:128vw;
+  width:100%;
+  background-color: var(--primary-color);
+  height: 30vw;
+  margin-bottom :-10vw;
+}
+.findvejfooter p {
+  color: #fff;
+}
+
+.findvejfooter img {
+  width:17vw;
+  margin-top:1vw;
+  padding-top:1vw;
+}
+
+.findvejfooter a {
+  color: #fff;
+  border-style:solid;
+  border-width: .1vw;
+  border-color: #fff;
+  padding:.3vw;
+}
+
+
+
+/*-----------------------------------------------PATIENTHÅNDBOG SIDE *---------------------------------------------------*/
+
+.patienthåndbog {
+  position: absolute;
+  background-color: #fff;
+  color: var(--primary-color);
+  width:76vw;
+  left: 50%;
+  transform: translate(-50%, 0);
+  top: 10vw;
+  padding:.5vw 2vw 2vw 2vw;
+  background-color:#fff;
+  border-style:solid;
+  border-width: .15vw;
+  border-color: var(--primary-color);
+}
+
+/* Her i patienthåndbogen er der også brugt grid - dog kun med 4 kolonner. */
+
+.patientvejledning {
+  position: absolute;
+  top:34vw;
+  display:grid;
+  margin:0;
+  column-gap: 2vw;
+  width: 74vw;
+  margin-left:10vw;
+  grid-template-columns: repeat(4, 25%);
+  z-index:1;
+}
+
+/* Jeg har sat cursor til pointer ved billederne, da de er tiltænkt at fungere som links ind til de vejledninger der refereres til. Så hvis man trykker på
+feber, vil man komme ind og få vejledning om feber eksempelvis. */
+
+.patientvejledning img {
+  width:100%;
+  margin-top:3vw;
+  filter:drop-shadow(10px 15px 10px #392b3d);
+  cursor:pointer;
+}
+
+.patientvejledning h2 {
+  background-color: var(--primary-color);
+  color:#fff;
+  text-align:center;
+  padding:2vw 0vw;
+  margin:0;
+}
+
+/* her placeres hvert billede i et grid. De er alle gjort relative, og har så en absolut positioned titel over sig. */
+
+.vorter {
+  position: relative;
+  grid-column: 1/3;
+  grid-row:1;
+}
+.vortertitel {
+  position:absolute;
+  bottom:0vw;
+  width:39vw;
+}
+
+.mens {
+  position: relative;
+  grid-column:3/5;
+  grid-row:1;
+}
+.menstitel {
+  position:absolute;
+  bottom:0vw;
+  width:39vw;
+}
+
+.feber {
+  position: relative;
+  grid-column: 1/3;
+  grid-row:2;
+}
+.febertitel {
+  position:absolute;
+  bottom:0vw;
+  width:39vw;
+}
+
+.sexsygdom {
+  position: relative;
+  grid-column:3/5;
+  grid-row:2;
+}
+.sextitel {
+  position:absolute;
+  bottom:0vw;
+  width:39vw;
+}
+
+.udslæt {
+  position: relative;
+  grid-column: 1/3;
+  grid-row:3;
+}
+.udslættitel {
+  position:absolute;
+  bottom:0vw;
+  width:39vw;
+}
+
+.hoste {
+  position:relative;
+  grid-column:3/5;
+  grid-row:3;
+}
+.hostetitel {
+  position:absolute;
+  bottom:0vw;
+  width:39vw;
+}
+
+.forældre {
+  position:relative;
+  grid-column: 1/3;
+  grid-row:4;
+}
+.forældretitel {
+  position:absolute;
+  bottom:0vw;
+  width:39vw;
+}
+
+.gravid {
+  position:relative;
+  grid-column:3/5;
+  grid-row:4;
+}
+
+.gravidtitel {
+  position:absolute;
+  bottom:0vw;
+  width:39vw;
+}
+
+.patientfooter {
+  position: absolute;
+  top:170vw;
+  width:100%;
+  background-color: var(--primary-color);
+  height: 30vw;
+  margin-bottom :-10vw;
+}
+.patientfooter p {
+  color: #fff;
+}
+
+.patientfooter img {
+  width:17vw;
+  margin-top:1vw;
+  padding-top:1vw;
+}
+
+.patientfooter a {
+  color: #fff;
+  border-style:solid;
+  border-width: .1vw;
+  border-color: #fff;
+  padding:.3vw;
+}
+
+/* ---------------------------MEDIA QUERIES ----------------------------- */
+
+
+@media screen and (max-width:1200px) {
+  
+  .hamburger {
+    background:none;
+    border:none;
+  }
+  
+  /* her gøres hamburger menuen synlig med display:block når man kommer ind i denne media query */
+  .hamburger {
+    display: block;
+    z-index:2;
+  }
+
+  /* Her flytter jeg hamburger menuen med over i den anden side når der er blevet klikket, så den er tæt på ens øjne når man kigger i menuen, 
+  så det er nemt at finde vej ud igen. */
+  .hamburger.active {
+    transform: translateX(-51vw) translateY(1vw);
+  }
+
+  /* jeg gør den midterste span usynlig, så jeg kan rotere de to andre til at være et kryds uden den er i midten. Jeg brugte en tutorial til dette på youtube. */
+  .hamburger.active .bar:nth-child(2) {
+    opacity: 0;
+  }
+
+  /* De næste to roteres 45 grader i hver sin retning, så de kommer til at ligne et kryds. De er også translatet 8 px hver sin retning, så de mødes i midten. */
+  .hamburger.active .bar:nth-child(1) {
+    transform:translateY(8px) rotate(45deg);
+  }
+
+  .hamburger.active .bar:nth-child(3) {
+    transform:translateY(-8px) rotate(-45deg);
+  }
+
+  /* her begynder jeg at lave menuens styling */
+
+  .navmenu {
+    position: fixed;
+    left:-200%;
+    top:0;
+    gap:0;
+    flex-direction:column;
+    width:100%;
+    text-align:left; 
+    align-items:flex-start;
+    justify-content: flex-start;
+    background-color: #fff;
+    transition:0.3s;
+    z-index:2;
+  }
+
+  .dropdown {
+    margin-bottom:4vw;
+    margin-left:4vw;
+    display:blocK;
+  }
+
+  .navmenu.active {
+    left:0;
+    z-index:2;
+    width:40%;
+    height:100%;
+  }
+
+
+  .dropbtn {
+    font-size:4vw;
+    font-weight:500;
+    position: relative;
+    left:0;
+  }
+  .active {
+    color: var(--secondary-color);
+    font-weight:500;
+    font-size: 4vw;
+  }
+
+.dropdown-content a {
+  color: var(--primary-color);
+  font-size:2.5vw;
+  font-weight:400;
+  text-decoration: none;
+  margin:0;
+  text-align: left;
+}
+
+
+  /* Alt dropdown bliver nu synlig som udgangspunkt med display:block. Baggrunden bliver derudover gjort hvid i stedet for lilla, så det passer med resten af stylingen*/
+.dropdown-content {
+  display: block;
+  background-color: #fff;
+  flex-direction: column;
+  position: relative;
+  width: 100%;
+  left:0;
+}
+
+
+
+.dropmargin {
+  display: block;
+  position:relative;
+  background-color:#fff;
+  min-width: 10vw;
+  padding:.5vw;
+  z-index: 2;
+}
+
+.dropdown-content a:hover {
+  color:var(--secondary-color);
+}
+
+.dropdown:hover .dropbtn {
+  color: var(--secondary-color);
+}
+
+  
+#selvbetjening {
+  margin-bottom:5vw;
+}
+
+/*index*/
+/* der justeres på placeringerne så det passer */
+
+.cedric1 {
+  top:135.5vw;
+}
+.header {
+  top:15vw;
+}
+
+  /*personale*/
+/* der justeres på placeringerne så det passer */
+.vorespersonale {
+  top: 14vw;
+}
+.personale {
+top:34vw;
+z-index:1;
+}
+
+.personalefooter {
+  top:240vw;
+  height: 35vw;
+  margin-bottom :-10vw;
+}
+.personalefooter p {
+  color: #fff;
+}
+
+.personalefooter img {
+  width:17vw;
+  margin-top:1vw;
+  padding-top:1vw;
+}
+
+.personalefooter a {
+  color: #fff;
+  border-style:solid;
+  border-width: .1vw;
+  border-color: #fff;
+  padding:.3vw;
+}
+
+/*FIND VEJ side */
+/* der justeres på placeringerne så det passer */
+.findvej {
+  top:13vw;
+}
+.bil {
+  top: 32vw;
+}
+
+.tog {
+  top:32vw;
+}
+
+.bus {
+  top:32vw;
+}
+
+
+.findvejfooter {
+  top:130vw;
+}
+
+/*Patienthåndbog side */
+/* der justeres på placeringerne så det passer */
+
+.sekundærbox2 {
+height:45vw;
+}
+.patienthåndbog {
+  top:10vw;
+}
+.patientvejledning {
+  top:35vw;
+}
+
+}
+
+
+
+@media screen and (max-height:1350px) and (max-width:1200px) {
+
+  /* her gøres margin og padding mindre så når ens viewport bliver kortere, kan man stadig se hele navigationen */
+  .dropbtn {
+    font-size:3.5vw;
+    margin:0;
+    font-weight:500;
+    position: relative;
+    left:0;
+  }  
+  .dropdown-content {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    background-color: #fff;
+    width: 100%;
+    left:0;
+    margin:0;
+    padding:.2vw;
+  }
+  
+  .dropdown-content a {
+    color: var(--primary-color);
+    font-size:2.5vw;
+    font-weight:400;
+    padding: 0;
+    margin:0;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+  }
+
+  #nav1 {
+    display:inline-block;
+  }
+
+  #nav2 {
+    display:inline-block;
+  }
+
+  #nav3 {
+    display:inline-block;
+  }
+
+  #nav4 {
+    display:inline-block;
+  }
+
+}
+
+@media screen and (max-height:1150px) and (max-width:1200px) {
+  
+  .banner {
+    top:5vw;
+  }
+  /* her gøres teksten mindre så når ens viewport bliver kortere, kan man stadig se hele navigationen */
+  .dropbtn {
+    font-size:2.5vw;
+    font-weight:500;
+    position: relative;
+    left:0;
+    margin:0;
+  }
+  .active {
+    color: var(--secondary-color);
+    font-weight:500;
+    font-size: 2.5vw;
+  }
+
+.dropdown-content a {
+  color: var(--primary-color);
+  font-size:1.8vw;
+  font-weight:400;
+  text-decoration: none;
+  margin:0vw;
+  text-align: left;
+}
+
+}
+
+@media screen and (max-height:820px) and (max-width:1200px) {
+  /* Denne media query er lavet til når folk bruger fx en tablet i landscape mode, hvor højden ikke er så stor, men den stadig er bred.
+  Det er for at dropdown menuen ikke skal blive 'for lang' og gå udover skærmen. Den er placeret med en fixed position, så man ikke kan scrolle
+  inde i den. Derfor når man vender noget så højden bliver max 820, placeres drop-down menuen i 2 kolonner med et grid.
+  Menuen får også lov at tage hele viewporten(100vw) og krydset rykkes ikke over i den anden side */
+  
+  .navmenu {
+    position: fixed;
+    display:grid;
+    left:-200%;
+    top:0;
+    gap:0;
+    flex-direction:column;
+    width:100vw;
+    text-align:left; 
+    background-color: #fff;
+    transition:0.3s;
+    z-index:2;
+  }
+
+
+  /* her gøres det til grid med 4 lige store/automatisk fordelt columns */
+  .navmenu.active {
+    display:grid;
+    grid-template-columns: auto auto auto auto;
+    left:0;
+    z-index:2;
+    width:100vw;
+    height:100%;
+  }
+
+  .hamburger.active {
+    transform: translateY(1vw);
+  }
+ 
+  /* her sættes de i griddet */
+  #nav1 {
+    grid-column:1/3;
+    grid-row:1;
+  }
+   #nav2 {
+    grid-column:3/5;
+    grid-row:1;
+  }
+  #nav3 {
+    grid-column:1/3;
+    grid-row:2;
+  }
+  #nav4 {
+    grid-column:3/5;
+    grid-row:2;
+  }
+  
+}
+
+
+@media screen and (max-width:1000px) {
+ 
+  .banner {
+    top:5vw;
+  }
+  /* jeg justerer logoets størrelse, så det stadig kan ses på de mindre skærme */
+  .logo {
+    width:20vw;
+  }
+
+  .dropbtn {
+    font-size:3vw;
+    font-weight:500;
+    position: relative;
+    left:0;
+  }
+
+  .active {
+    color: var(--secondary-color);
+    font-weight:500;
+    font-size: 3vw;
+  }
+
+  .dropdown-content {
+    background-color: #fff;
+  }
+.dropdown-content a {
+  color: var(--primary-color);
+  font-size:2.5vw;
+  font-weight:400;
+  text-decoration: none;
+  margin:0;
+  text-align: left;
+}
+
+
+/*Personale side */
+
+.personalefooter {
+  top:240vw;
+}
+/*FIND VEJ side */
+.findvej {
+  top:15vw;
+}
+
+.bil {
+  top: 35vw;
+}
+
+.tog {
+  top:35vw;
+}
+
+.bus {
+  top:35vw;
+}
+
+.kort {
+  top:70vw;
+}
+
+.findvejfooter {
+  top:135vw;
+}
+
+
+/*Patienthåndbog side */
+
+.patienthåndbog {
+  top:12vw;
+}
+
+.patientvejledning {
+  top:37vw;
+}
+
+.patientfooter {
+  position: absolute;
+  top:178vw;
+  width:100%;
+  background-color: var(--primary-color);
+  height: 40vw;
+  margin-bottom :-10vw;
+}
+
+}
+
+@media screen and (max-width:850px) {
+  .personale h4 {
+    font-size:1.8vw;
+  }
+}
+
+@media screen and (max-width:650px) {
+
+  /* Her laves der om så menuen fylder hele skærmen 
+  Teksten gøres også større igen så det kan ses på de små skærme*/
+  
+.logo {
+  width:24vw;
+}
+
+h1 {
+  font-size: 4vw;
+}
+
+h2 {
+  font-size: 3vw;
+  line-height:4vw;
+}
+
+p {
+  font-size:2.5vw;
+  line-height:3.5vw;
+}
+
+a {
+  font-size:2.5vw;
+  line-height:3.5vw;
+}
+
+.banner {
+  height:8vw;
+}
+  .hamburger.active {
+    transform: translateY(1vw) scale(1.3);
+  }
+
+  .hamburger.active .bar:nth-child(2) {
+    opacity: 0;
+  }
+
+  .hamburger.active .bar:nth-child(1) {
+    transform:translateY(8px) rotate(45deg);
+  }
+
+  .hamburger.active .bar:nth-child(3) {
+    transform:translateY(-8px) rotate(-45deg);
+  }
+
+  .navmenu {
+    position: fixed;
+    left:-200%;
+    top:0;
+    gap:0;
+    flex-direction:column;
+    width:100%;
+    text-align:left; 
+    align-items:flex-start;
+    justify-content: flex-start;
+    background-color: #fff;
+    transition:0.3s;
+    z-index:2;
+  }
+
+  .dropdown {
+    margin-bottom:4vw;
+    margin-left:4vw;
+    display:blocK;
+  }
+
+  .navmenu.active {
+    left:0;
+    z-index:2;
+    width:100%;
+    height:100%;
+  }
+
+  .dropbtn {
+    font-size:6vw;
+    font-weight:500;
+    position: relative;
+    left:0;
+  }
+
+  .active {
+    color: var(--secondary-color);
+    font-weight:500;
+    font-size: 6vw;
+  }
+
+  .dropdown-content {
+    display: inline-block;
+    flex-direction: column;
+    position: relative;
+    width: 100%;
+    left:0;
+  }
+
+  .dropdown-content a {
+    color: var(--primary-color);
+    font-size:4vw;
+    font-weight:400;
+    text-decoration: none;
+    margin:2vw;
+    display: block;
+    text-align: left;
+  }
+  .dropdown-content a:hover {
+    color:var(--secondary-color);
+  }
+
+  .dropdown:hover .dropbtn {
+    color: var(--secondary-color);
+  }
+  .dropdown:hover .dropdown-content {
+    display: flex;
+  }
+
+  .dropdown:hover .dropmargin {
+    display: flex;
+  }
+
+  
+  /*INDEX SIDE*/
+
+
+.header {
+  position:absolute;
+  width:65vw;
+  height: 25vw;
+  left: 50%;
+  transform: translate(-50%, 0);
+  top:14vw;
+  padding:.8vw 4vw;
+  background-color: rgba(255, 255, 255, 0.7);
+  text-align:center;
+}
+
+.headerindhold {
+position:relative;
+}
+
+.selvbetjening a {
+position:absolute;
+width: 43vw;
+height: 6vw;
+left: 50%;
+transform: translate(-50%, 0);
+top:9vw;
+padding: 2vw 1vw 0vw 1vw;
+font-size: 4vw;
+font-weight:300;
+}
+
+.selvbetjening a:hover {
+  position:absolute;
+  width: 43vw;
+  height: 6vw;
+  left: 50%;
+  transform: translate(-50%, 0);
+  top:9vw;
+  padding: 2vw 1vw 0vw 1vw;
+  font-size: 4vw;
+  font-weight:300;
+  }
+
+
+
+
+.akuttelefon {
+  height:37vw;
+}
+
+.lægetelefon {
+  height:37vw;
+}
+
+.konsultationstid {
+  height:37vw;
+}
+
+/* billede layoutet laves om så de er ved siden af hinanden i stedet for overlappet, da det ikke fungerede som æstetisk design i den lille version */
+.cedric1 {
+  margin-left:10vw;
+  padding:0;
+  top:200vw;
+  width:40vw;
+  filter:none;
+}
+
+.thirdman1 {
+  top:200vw;
+  padding:0;
+  width:40vw;
+  z-index: -1;
+  filter:none;
+  }
+
+  .sekundærbox1  {
+    top:87vw;
+    width:100%;
+    height:55vw;
+    background-color: var(--primary-color);
+    z-index: -1;
+  }
+
+  .lægehus {
+    top:92vw;
+    height:34vw;
+  }
+
+  .lægevagt {
+    top:92vw;
+    height:34vw;
+  }
+
+.email {
+  position:absolute;
+  top:134vw;
+}
+
+.telefonkonsultation {
+  position:absolute;
+  top:162vw;
+}
+
+.indexfooter {
+  position: absolute;
+  top:230vw;
+  width:100%;
+  background-color: var(--primary-color);
+  height: 70vw;
+  margin-bottom :-10vw;
+}
+
+/*personale*/
+
+.sekundærbox2 {
+  height:70vw;
+}
+.vorespersonale {
+  top: 15vw;
+}
+
+.personale {
+  top:46vw;
+}
+
+/* placeringerne laves om så de nu er to kolonner. #anne gøres også blåt, så man kan se teksten når hun rykker ned i anden række. */
+.personaleh2 {
+  font-size:3.5vw;
+}
+
+#anne {
+  font-size:3.5vw;
+  color:var(--primary-color)
+}
+
+.personale h4 {
+  font-size:2.5vw;
+  font-weight:400;
+  margin:0;
+}
+
+.lis {
+  grid-column:1/4;
+  grid-row: 1;
+}
+
+.mateo {
+  grid-column:4/7;
+  grid-row: 1;
+}
+
+.annesofie {
+  grid-column:1/4; 
+  grid-row:2;
+}
+
+.jeanette {
+  grid-column:4/7;
+  grid-row: 2;
+}
+
+.hanne {
+  grid-column:1/4;
+  grid-row: 3;
+}
+
+.tanja {
+  grid-column:4/7; 
+  grid-row:3;
+}
+
+.linnea {
+  grid-column:1/4;
+  grid-row: 4;
+}
+
+.thomas {
+  grid-column:4/7;
+  grid-row: 4;
+}
+
+.ronja {
+  grid-column:1/4; 
+  grid-row:5;
+}
+
+
+.louise {
+  grid-column:4/7;
+  grid-row: 5;
+}
+
+.diana {
+  grid-column:1/4;
+  grid-row: 6;
+}
+
+.vivi {
+  grid-column:4/7; 
+  grid-row:6;
+}
+
+.else {
+  grid-column:1/4; 
+  grid-row:7;
+}
+
+.personalefooter {
+  top:470vw;
+  height:70vw;
+}
+
+/*FIND VEJ side */
+.findvej {
+  top:15vw;
+}
+
+.bil {
+  top: 45vw;
+  height:65vw;
+}
+
+.tog {
+  top:45vw;
+  height:65vw;
+}
+
+.bus {
+  top:45vw;
+  height:65vw;
+}
+
+.kort {
+  top:115vw;
+}
+
+.findvejfooter {
+  top:175vw;
+  height:70vw;
+}
+
+
+/*Patienthåndbog side */
+
+.patienthåndbog {
+  top:16vw;
+}
+
+.patientvejledning {
+  top:60vw;
+}
+
+.patientfooter {
+  position: absolute;
+  top:198vw;
+  width:100%;
+  background-color: var(--primary-color);
+  height: 70vw;
+  margin-bottom :-10vw;
+}
+
+}
+
+
+@media screen and (max-width:500px) {
+  
+  h1 {
+    font-family: 'Avenir Next', Helvetica, sans-serif;
+    color: var(--primary-color);
+    font-weight: normal;
+    font-size:5vw;
+    line-height:5vw;
+    margin-top:1vw;
+  }
+
+  h2 {
+    font-family: 'Avenir Next', Helvetica, sans-serif;
+    color: var(--primary-color);
+    font-weight: normal;
+    font-size:4vw;
+    line-height:4.5vw;
+    font-weight:400;
+  }
+
+ 
+  
+  
+  p {
+    font-family: 'Avenir Next', Helvetica, sans-serif;
+    color: var(--primary-color);
+    font-size:3vw;
+    font-weight:300;
+    line-height:5vw;
+  }
+  a {
+  
+    text-decoration: none;
+    color:var(--secondary-color);
+    font-size:3vw;
+    line-height:1vw;
+  }
+
+  .logo {
+    width:28vw;
+  }
+
+  .personale p {
+    font-size:2.5vw;
+  }
+
+  /* jeg bruger her scale, for at hamburgerkrydset bliver større */
+
+  .hamburger.active {
+    transform: translateY(1vw) scale(1.3);
+  }
+
+  .hamburger.active .bar:nth-child(2) {
+    opacity: 0;
+  }
+
+  .hamburger.active .bar:nth-child(1) {
+    transform:translateY(8px) rotate(45deg);
+  }
+
+  .hamburger.active .bar:nth-child(3) {
+    transform:translateY(-8px) rotate(-45deg);
+  }
+
+  .navmenu {
+    position: fixed;
+    left:-200%;
+    top:0;
+    gap:0;
+    flex-direction:column;
+    width:100%;
+    text-align:left; 
+    align-items:flex-start;
+    justify-content: flex-start;
+    background-color: #fff;
+    transition:0.3s;
+    z-index:2;
+  }
+
+  .dropdown {
+    margin-bottom:4vw;
+    margin-left:4vw;
+    display:blocK;
+  }
+
+  .navmenu.active {
+    left:0;
+    display:block;
+    z-index:2;
+    width:100%;
+    height:100%;
+  }
+
+  .dropbtn {
+    font-size:6vw;
+    font-weight:500;
+    position: relative;
+    left:0;
+  }
+
+  .active {
+    font-size: 6vw;
+    color: var(--secondary-color);
+    font-weight:500;
+  }
+
+.dropdown-content {
+  display: inline-block;
+  flex-direction: column;
+  position: relative;
+  width: 100%;
+  margin:0;
+  left:0;
+}
+
+.dropdown-content a {
+  color: var(--primary-color);
+  font-size:4vw;
+  font-weight:400;
+  margin:4vw;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+.dropdown-content a:hover {
+  color:var(--secondary-color);
+}
+
+.dropdown:hover .dropbtn {
+  color: var(--secondary-color);
+}
+.dropdown:hover .dropdown-content {
+  display: flex;
+}
+
+  /*INDEX SIDE*/
+
+  .banner {
+    height:10vw;
+    top:7vw;
+  }
+  .header {
+    position:absolute;
+    width:68vw;
+    height: 24vw;
+    left: 50%;
+    transform: translate(-50%, 0);
+    top:19vw;
+    padding:2vw 6vw;
+    background-color: rgba(255, 255, 255, 0.7);
+    text-align:center;
+}
+
+.headerindhold {
+  position:relative;
+}
+
+.selvbetjening a {
+  position:absolute;
+  width: 43vw;
+  height: 4vw;
+  left: 50%;
+  transform: translate(-50%, 0);
+  top:12vw;
+  padding-top: 4vw;
+  padding-bottom:1vw;
+  font-size: 4vw;
+}
+
+
+.selvbetjening a:hover {
+  width: 43vw;
+  height: 4vw;
+  padding-top: 4vw;
+  top:12vw;
+  font-size: 4vw;
+}
+
+/* jeg har gjort telefonerne til nu at optage hele siden og komme under hinanden */
+
+.lægetelefon {
+  top:54vw;
+  margin:0;
+  width:76vw;
+  left: 50%;
+  transform: translate(-50%, 0);
+  width:76vw;
+  padding:.5vw 2vw;
+  border-width: .35vw;
+  filter:none;
+}
+
+.akuttelefon{
+  top:96vw;
+  margin:0;
+  width:76vw;
+  left: 50%;
+  transform: translate(-50%, 0);
+  width:76vw;
+  padding:.5vw 2vw;
+  border-width: .35vw;
+  filter:none;
+}
+
+.konsultationstid {
+  top:139vw;
+  margin:0;
+  width:76vw;
+  left: 50%;
+  transform: translate(-50%, 0);
+  width:76vw;
+  padding:.5vw 2vw;
+  border-width: .35vw;
+  filter:none;
+  height:40vw;
+}
+
+/* billederne står nu begge alene*/
+.cedric1 {
+  width:80vw;
+  top: 352vw;
+}
+
+.thirdman1 {
+  width:80vw;
+  margin-left:10vw;
+  top:410vw;
+}
+
+.sekundærbox1  {
+  top:183vw;
+  width:100%;
+  height:85vw;
+  background-color: var(--primary-color);
+  z-index: -1;
+}
+
+
+.lægehus {
+  position:absolute;
+  top:188vw;
+  width:30vw;
+  height:53vw;
+  left:0;
+  margin-left:10vw;
+  padding:2vw 4vw;
+  background-color:#fff;
+  border-style:solid;
+  border-width: .35vw;
+  border-color: var(--primary-color);
+}
+
+
+.lægevagt {
+  position:absolute;
+  top:188vw;
+  width:30vw;
+  height:53vw;
+  right:0;
+  margin-right:10vw;
+  padding:2vw 4vw;
+  background-color:#fff;
+  border-style:solid;
+  border-width: .35vw;
+  border-color: var(--primary-color);
+}
+
+
+.email {
+  position:absolute;
+  top:250vw;
+  background-color: #fff;
+  color: var(--primary-color);
+  left: 50%;
+  transform: translate(-50%, 0);
+  width:76vw;
+  padding:.5vw 2vw;
+  background-color:#fff;
+  border-style:solid;
+  border-width: .35vw;
+  border-color: var(--primary-color);
+}
+
+.telefonkonsultation {
+  position:absolute;
+  top:296vw;
+  background-color: #fff;
+  color: var(--primary-color);
+  left: 50%;
+  transform: translate(-50%, 0);
+  width:76vw;
+  padding:.5vw 2vw;
+  background-color:#fff;
+  border-style:solid;
+  border-width: .35vw;
+  border-color: var(--primary-color);
+}
+
+.indexfooter {
+  position: absolute;
+  top:469vw;
+  width:100%;
+  background-color: var(--primary-color);
+  height: 90vw;
+  margin-bottom :-10vw;
+}
+
+.logofooter {
+  display:none;
+}
+
+.logofooterlille {
+  display:block;
+}
+
+/*personale side*/
+
+.sekundærbox2 {
+  position:relative;
+  display:block;
+  top: 0vw;
+  width:100%;
+  height:100vw;
+  background-color: var(--primary-color);
+  z-index: -1;
+}
+
+
+.vorespersonale {
+  position: absolute;
+  background-color: #fff;
+  color: var(--primary-color);
+  width:76vw;
+  left: 50%;
+  transform: translate(-50%, 0);
+  top: 21vw;
+  padding:.5vw 2vw;
+  background-color:#fff;
+  border-style:solid;
+  border-width: .15vw;
+  border-color: var(--primary-color);
+}
+
+.personale {
+  position: absolute;
+  top:73vw;
+  display:grid;
+  margin:0;
+  column-gap: 1vw;
+  width: 75vw;
+  margin-left:10vw;
+  grid-template-columns: repeat(6, 16.666%);
+  z-index:1;
+}
+
+
+.personale h2 {
+  color: var(--primary-color);
+  margin-top:4vw;
+  margin-bottom:1vw;
+}
+
+.personalefooter {
+  position: absolute;
+  top:500vw;
+  width:100%;
+  background-color: var(--primary-color);
+  height: 85vw;
+  margin-bottom :-10vw;
+}
+
+.personalefooter p {
+  color: #fff;
+}
+
+.personalefooter img {
+  width:17vw;
+  margin-top:1vw;
+  padding-top:1vw;
+}
+
+.personalefooter a {
+  color: #fff;
+  border-style:solid;
+  border-width: .1vw;
+  border-color: #fff;
+  padding:.3vw;
+}
+
+.about p {
+  margin-top:0;
+}
+ 
+/*FIND VEJ side */
+.findvej {
+  top:21vw;
+}
+
+/* rutevejledningerne kommer nu til at fylde hele siden */
+.bil {
+  top: 59vw;
+  height:35vw;
+  width:76vw;
+  left: 50%;
+  transform: translate(-50%, 0);
+  margin:0;
+  filter:none;
+}
+
+.tog {
+  top: 98vw;
+  height:30vw;
+  width:76vw;
+  left: 50%;
+  transform: translate(-50%, 0);
+  margin:0;
+  filter:none;
+}
+
+.bus {
+  top: 133vw;
+  height:35vw;
+  width:76vw;
+  left: 50%;
+  transform: translate(-50%, 0);
+  margin:0;
+  filter:none;
+}
+
+.kort {
+  top:173vw;
+}
+
+.findvejfooter {
+  top:236vw;
+  height:90vw;
+}
+
+/*Patienthåndbog side */
+
+.patienthåndbog {
+  top:21vw;
+}
+
+.patientvejledning {
+  top:83vw;
+}
+
+.patientfooter {
+ top:240vw;
+ height:90vw;
+}
+
+}
+
+@media screen and (max-width:400px) {
+  .banner {
+    height:10vw;
+    top:9vw;
+  }
+
+  .logo {
+    width:32vw;
+  }
+
+  .navmenu.active {
+    display:block;
+  }
+  
+  /*index side*/
+  .header {
+    position:absolute;
+    width:72vw;
+    height: 22vw;
+    left: 50%;
+    transform: translate(-50%, 0);
+    top:21vw;
+    padding:3vw 4vw;
+    background-color: rgba(255, 255, 255, 0.7);
+    text-align:center;
+}
+
+.headerindhold {
+  position:relative;
+}
+
+.selvbetjening a {
+  position:absolute;
+  width: 43vw;
+  height: 4vw;
+  left: 50%;
+  transform: translate(-50%, 0);
+  top:12vw;
+  padding-top: 4vw;
+  padding-bottom:1vw;
+  font-size: 4vw;
+  font-weight:200;
+}
+
+
+.selvbetjening a:hover {
+  width: 43vw;
+  height: 4vw;
+  padding-top: 4vw;
+  top:12vw;
+  font-size: 4vw;
+}
+
+
+.lægetelefon {
+  top:54vw;
+}
+
+.akuttelefon{
+  top:95vw;
+}
+
+.konsultationstid {
+  top:136vw;
+  height:40vw;
+}
+
+.sekundærbox1 {
+  top:178vw;
+  height:75vw;
+}
+.lægehus {
+  top:181vw;
+  height:55vw;
+}
+
+.lægevagt {
+  top:181vw;
+  height:55vw;
+}
+
+.email {
+  top:243vw;
+}
+
+.telefonkonsultation {
+  top:286vw;
+}
+
+.cedric1 {
+  top:340vw;
+}
+
+.thirdman1 {
+  top:398vw;
+}
+
+
+.indexfooter {
+  top:458vw;
+}
+
+  
+  /*personale side*/
+  .vorespersonale {
+    position: absolute;
+    background-color: #fff;
+    color: var(--primary-color);
+    width:76vw;
+    left: 50%;
+    transform: translate(-50%, 0);
+    top: 22vw;
+    padding:.5vw 2vw;
+    background-color:#fff;
+    border-style:solid;
+    border-width: .15vw;
+    border-color: var(--primary-color);
+  }
+  
+  .personale {
+    position: absolute;
+    top:70vw;
+    display:grid;
+    margin:0;
+    column-gap: 1vw;
+    width: 75vw;
+    margin-left:10vw;
+    grid-template-columns: repeat(6, 16.666%);
+    z-index:1;
+  }
+
+  .personalefooter {
+    top:500vw;
+  }
+/*findvejside*/
+
+
+
+.findvej {
+  top:21vw;
+}
+
+.bil {
+  top: 59vw;
+  height:35vw;
+  width:76vw;
+  left: 50%;
+  transform: translate(-50%, 0);
+  margin:0;
+  filter:none;
+}
+
+.tog {
+  top: 98vw;
+  height:30vw;
+  width:76vw;
+  left: 50%;
+  transform: translate(-50%, 0);
+  margin:0;
+  filter:none;
+}
+
+.bus {
+  top: 133vw;
+  height:35vw;
+  width:76vw;
+  left: 50%;
+  transform: translate(-50%, 0);
+  margin:0;
+  filter:none;
+}
+
+.kort {
+  top:173vw;
+}
+
+.findvejfooter {
+  top:236vw;
+  height:90vw;
+}
+
+
+/*Patienthåndbog side */
+
+.patienthåndbog {
+  top:23vw;
+}
+
+.patientvejledning {
+  top:85vw;
+}
+
+.patientfooter {
+ top:224vw;
+ height:90vw;
+}
+
+}
